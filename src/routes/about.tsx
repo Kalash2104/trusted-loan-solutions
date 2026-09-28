@@ -81,7 +81,7 @@ function AboutPage() {
           src={aboutOffice}
           alt="An adviser and clients talking through a plan across a sunlit table"
           width={1200}
-          height={900}
+          height={912}
           className="aspect-[4/3] w-full rounded-xl object-cover outline-1 -outline-offset-1 outline-black/5"
         />
       </header>

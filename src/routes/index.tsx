@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroFamily from "@/assets/hero-family.jpg";
+import { products } from "@/lib/products";
+import { EnquiryBanner } from "@/components/EnquiryBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,34 +27,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const products = [
-  {
-    tag: "Personal",
-    name: "Personal loans",
-    copy: "Fixed repayments for the things you can name.",
-  },
-  {
-    tag: "Business",
-    name: "Business loans",
-    copy: "Working capital sized to your order book.",
-  },
-  {
-    tag: "Flex",
-    name: "Overdraft",
-    copy: "A quiet cushion for the cash-flow dips.",
-  },
-  {
-    tag: "Home",
-    name: "Home loans",
-    copy: "Mortgages that hold steady through the years.",
-  },
-  {
-    tag: "Cover",
-    name: "Insurance",
-    copy: "Protection for the plan you've just built.",
-  },
-];
-
 const steps = [
   {
     n: "01",
@@ -73,28 +47,7 @@ const steps = [
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-body text-foreground antialiased">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-30 flex items-center justify-between border-b border-border/70 bg-background/90 px-6 py-4 backdrop-blur">
-        <a href="/" className="font-display text-2xl italic tracking-tight">
-          Trustline Finance
-        </a>
-        <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-          <a href="#products" className="transition-colors hover:text-primary">
-            Products
-          </a>
-          <a href="#journey" className="transition-colors hover:text-primary">
-            Your journey
-          </a>
-          <a href="#contact" className="transition-colors hover:text-primary">
-            Talk to us
-          </a>
-        </div>
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-          Lending &amp; Insurance
-        </span>
-      </nav>
-
+    <div>
       {/* Hero */}
       <header className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-16 lg:grid-cols-[1.35fr_1fr]">
         <div>
@@ -189,18 +142,24 @@ function Index() {
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
           {products.map((p) => (
-            <div
+            <Link
               key={p.name}
-              className="rounded-xl border border-border/70 bg-card p-5 transition-all duration-200 ease-[var(--ease-editorial)] hover:-translate-y-1 hover:border-primary/40"
+              to={p.slug}
+              className="group flex flex-col rounded-xl border border-border/70 bg-card p-5 transition-all duration-200 ease-[var(--ease-editorial)] hover:-translate-y-1 hover:border-primary/40"
             >
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
                 {p.tag}
               </span>
-              <h3 className="mt-6 font-display text-2xl italic">{p.name}</h3>
-              <p className="mt-2 text-sm text-pretty text-muted-foreground">
+              <h3 className="mt-6 font-display text-2xl italic transition-colors group-hover:text-primary">
+                {p.name}
+              </h3>
+              <p className="mt-2 flex-1 text-sm text-pretty text-muted-foreground">
                 {p.copy}
               </p>
-            </div>
+              <span className="mt-5 text-xs text-muted-foreground transition-colors group-hover:text-primary">
+                Learn more →
+              </span>
+            </Link>
           ))}
         </div>
       </section>
@@ -222,46 +181,9 @@ function Index() {
       </section>
 
       {/* CTA banner */}
-      <section className="mx-auto max-w-[900px] px-6 py-16">
-        <div className="flex flex-col justify-between gap-6 rounded-xl bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:p-10">
-          <div>
-            <h2 className="font-display text-3xl font-semibold italic tracking-tight">
-              Ready when you are.
-            </h2>
-            <p className="mt-2 max-w-[40ch] text-sm text-pretty text-primary-foreground/75">
-              A 15-minute call. No obligation, no jargon.
-            </p>
-          </div>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-all duration-200 ease-[var(--ease-editorial)] hover:-translate-y-0.5 hover:bg-accent/90"
-          >
-            Book your enquiry
-          </a>
-        </div>
-      </section>
-
-      {/* Footer / contact */}
-      <footer
-        id="contact"
-        className="border-t border-border/70 px-6 py-12 scroll-mt-16"
-      >
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:justify-between">
-          <div className="font-display text-2xl italic">Trustline Finance</div>
-          <div className="space-y-1 text-sm text-muted-foreground">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground">
-              Contact &amp; regulatory
-            </p>
-            <p>Registered lending &amp; insurance services company.</p>
-            <p>Registered office: [client's registered address].</p>
-            <p>enquiries@trustline.example · 0800 000 0000</p>
-          </div>
-          <p className="max-w-[34ch] text-xs text-pretty text-muted-foreground">
-            Rates and figures shown are illustrative examples for discussion
-            only, not offers or real claims.
-          </p>
-        </div>
-      </footer>
+      <div className="mx-auto max-w-[900px] px-6 py-16">
+        <EnquiryBanner />
+      </div>
     </div>
   );
 }

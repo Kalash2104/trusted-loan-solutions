@@ -9,7 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+import { SiteNav, SiteFooter } from "@/components/SiteChrome";
+import appCss from "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -132,8 +133,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen bg-background font-body text-foreground antialiased">
+        {/* Shared chrome: nested routes render between nav and footer. */}
+        <SiteNav />
+        <Outlet />
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
   );
 }

@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BusinessLoansRouteImport } from './routes/business-loans'
+import { Route as HomeLoansRouteImport } from './routes/home-loans'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as OverdraftRouteImport } from './routes/overdraft'
+import { Route as PersonalLoansRouteImport } from './routes/personal-loans'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessLoansRoute = BusinessLoansRouteImport.update({
+  id: '/business-loans',
+  path: '/business-loans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeLoansRoute = HomeLoansRouteImport.update({
+  id: '/home-loans',
+  path: '/home-loans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OverdraftRoute = OverdraftRouteImport.update({
+  id: '/overdraft',
+  path: '/overdraft',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonalLoansRoute = PersonalLoansRouteImport.update({
+  id: '/personal-loans',
+  path: '/personal-loans',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/business-loans': typeof BusinessLoansRoute
+  '/home-loans': typeof HomeLoansRoute
+  '/insurance': typeof InsuranceRoute
+  '/overdraft': typeof OverdraftRoute
+  '/personal-loans': typeof PersonalLoansRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/business-loans': typeof BusinessLoansRoute
+  '/home-loans': typeof HomeLoansRoute
+  '/insurance': typeof InsuranceRoute
+  '/overdraft': typeof OverdraftRoute
+  '/personal-loans': typeof PersonalLoansRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/business-loans': typeof BusinessLoansRoute
+  '/home-loans': typeof HomeLoansRoute
+  '/insurance': typeof InsuranceRoute
+  '/overdraft': typeof OverdraftRoute
+  '/personal-loans': typeof PersonalLoansRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/business-loans'
+    | '/home-loans'
+    | '/insurance'
+    | '/overdraft'
+    | '/personal-loans'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/business-loans'
+    | '/home-loans'
+    | '/insurance'
+    | '/overdraft'
+    | '/personal-loans'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/business-loans'
+    | '/home-loans'
+    | '/insurance'
+    | '/overdraft'
+    | '/personal-loans'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BusinessLoansRoute: typeof BusinessLoansRoute
+  HomeLoansRoute: typeof HomeLoansRoute
+  InsuranceRoute: typeof InsuranceRoute
+  OverdraftRoute: typeof OverdraftRoute
+  PersonalLoansRoute: typeof PersonalLoansRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business-loans': {
+      id: '/business-loans'
+      path: '/business-loans'
+      fullPath: '/business-loans'
+      preLoaderRoute: typeof BusinessLoansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-loans': {
+      id: '/home-loans'
+      path: '/home-loans'
+      fullPath: '/home-loans'
+      preLoaderRoute: typeof HomeLoansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/overdraft': {
+      id: '/overdraft'
+      path: '/overdraft'
+      fullPath: '/overdraft'
+      preLoaderRoute: typeof OverdraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personal-loans': {
+      id: '/personal-loans'
+      path: '/personal-loans'
+      fullPath: '/personal-loans'
+      preLoaderRoute: typeof PersonalLoansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BusinessLoansRoute: BusinessLoansRoute,
+  HomeLoansRoute: HomeLoansRoute,
+  InsuranceRoute: InsuranceRoute,
+  OverdraftRoute: OverdraftRoute,
+  PersonalLoansRoute: PersonalLoansRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
